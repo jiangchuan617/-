@@ -1,0 +1,36 @@
+#快速排序
+import random
+import numpy as np
+def quickSort(lyst,lo,hi):#hi取不到
+    if hi>lo:
+        q=partition(lyst,lo,hi)
+        quickSort(lyst,lo,q)
+        quickSort(lyst,q+1,hi)
+def partition(lyst,left,right):#right取不到
+    key=lyst[right-1]
+    i=left
+    for j in range(left,right-1):
+        if lyst[j]<=key:
+            swap(lyst,i,j)
+            i+=1
+    swap(lyst,i,right-1)
+    return i
+def swap(lyst,i,j):
+    temp=lyst[i]
+    lyst[i]=lyst[j]
+    lyst[j]=temp
+    
+def main(size=20,sort=quickSort):
+    lyst=[]
+    for count in range(size):
+        lyst.append(random.randint(1,size+1))
+    
+    print(lyst)
+    #print(partition(lyst,0,size))
+    sort(lyst,0,size)
+    print(lyst)
+    
+if __name__=='__main__':
+    main()
+            
+        
