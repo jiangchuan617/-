@@ -1,3 +1,5 @@
+import random
+import time
 
 
 def min_e(lyst):
@@ -53,9 +55,21 @@ def min_max_e(lyst):
 
 
 def main():
-    A_list = [10,2,100000,4,5]
-    print(min_e(A_list))
-    print(min_max_e(A_list))
+    n = 10000000  # 样本数
+    m = 100000  # 随机数的取值范围
+    A_list = [random.randrange(m) for i in range(n)]
+    tic1 = time.time()
+    p = min_e(A_list)
+    toc1 = time.time()
+    print("%d个样本，最小元选取耗时 %.5f s" % (n,toc1-tic1))
+    print('最小元 = ：%d' % A_list[p])
+    tic2 = time.time()
+    min_element,max_element = min_max_e(A_list)
+    toc2 = time.time()
+    print("%d个样本，最小最大选取耗时 %.5f s" % (n,toc2-tic2))
+    print('最大元 = ：%d' % max_element)
+
+
 
 if __name__ == "__main__":
     main()
